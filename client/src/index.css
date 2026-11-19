@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@layer components {
+  .field-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #334155;
+    font-size: 0.875rem;
+    font-weight: 700;
+  }
+
+  .field-input {
+    width: 100%;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.75rem;
+    background: #fff;
+    padding: 0.875rem 1rem;
+    color: #0f172a;
+    outline: none;
+  }
+
+  .field-input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgb(59 130 246 / 10%);
+  }
+}
