@@ -1,6 +1,42 @@
 @import "tailwindcss";
 
 @layer components {
+  .dashboard-light {
+    color-scheme: light;
+  }
+
+  .dashboard-light [class*="dark:text-white"],
+  .dashboard-light [class*="dark:text-slate-100"],
+  .dashboard-light [class*="dark:text-slate-200"],
+  .dashboard-light [class*="dark:text-slate-300"],
+  .dashboard-light [class*="dark:text-slate-400"] {
+    color: #0f172a !important;
+  }
+
+  .dashboard-light [class*="dark:bg-"] {
+    background-color: #ffffff !important;
+  }
+
+  .dashboard-light [class*="dark:border-"] {
+    border-color: #e0f2fe !important;
+  }
+
+  .dashboard-light [class*="dark:hover:bg-"]:hover {
+    background-color: #f0f9ff !important;
+  }
+
+  .dashboard-light [class*="dark:ring-"] {
+    --tw-ring-color: #e0f2fe !important;
+  }
+
+  .dashboard-light [class*="dark:fill-"] {
+    fill: #ffffff !important;
+  }
+
+  .dashboard-light [class*="dark:stroke-"] {
+    stroke: #e0f2fe !important;
+  }
+
   .field-label {
     display: block;
     margin-bottom: 0.5rem;

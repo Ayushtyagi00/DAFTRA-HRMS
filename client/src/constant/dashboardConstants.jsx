@@ -1,134 +1,199 @@
-export const currentUser = {
-  name: "Aditi Rao",
-  role: "manager", // "employee" | "manager" | "admin"
-  avatarColor: "bg-blue-600",
-  team: "Product Engineering",
-};
+export const currentUser = { name: "Rahul Sharma", role: "admin" };
 
 export const ROLE_LABEL = {
-  employee: "Employee",
-  manager: "Manager",
   admin: "Admin",
+  manager: "Manager",
+  employee: "Employee",
 };
+
+export const NAV = [
+  {
+    id: "overview",
+    label: "Overview",
+    roles: ["admin", "manager", "employee"],
+  },
+  { id: "projects", label: "Projects", roles: ["admin", "manager"] },
+  { id: "tasks", label: "Tasks", roles: ["admin", "manager", "employee"] },
+  { id: "team", label: "People", roles: ["admin", "manager"] },
+  { id: "reports", label: "Reports", roles: ["admin", "manager"] },
+];
 
 export const projectsSeed = [
   {
-    id: "p1",
-    name: "Client Portal Revamp",
+    id: 1,
+    name: "Website redesign",
     status: "On track",
-    progress: 62,
-    dueDate: "Sep 18",
-    members: ["AR", "SK", "MJ"],
-    tasksOpen: 9,
-    tasksDone: 14,
+    progress: 72,
+    dueDate: "Dec 12",
+    members: ["AR", "SK", "PV"],
+    tasksDone: 18,
+    tasksOpen: 7,
   },
   {
-    id: "p2",
-    name: "Mobile Attendance App",
+    id: 2,
+    name: "Mobile app v2",
     status: "At risk",
-    progress: 31,
-    dueDate: "Sep 25",
-    members: ["SK", "PV"],
-    tasksOpen: 12,
-    tasksDone: 5,
+    progress: 28,
+    dueDate: "Nov 30",
+    members: ["SK", "NG"],
+    tasksDone: 9,
+    tasksOpen: 24,
   },
   {
-    id: "p3",
-    name: "Payroll Automation",
+    id: 3,
+    name: "Payments migration",
     status: "On track",
-    progress: 88,
-    dueDate: "Sep 10",
-    members: ["MJ", "AR", "PV", "SK"],
-    tasksOpen: 2,
-    tasksDone: 21,
+    progress: 51,
+    dueDate: "Jan 08",
+    members: ["AR", "PV", "NG", "TM"],
+    tasksDone: 14,
+    tasksOpen: 13,
+  },
+  {
+    id: 4,
+    name: "Customer portal",
+    status: "Active",
+    progress: 12,
+    dueDate: "Feb 20",
+    members: ["TM"],
+    tasksDone: 3,
+    tasksOpen: 21,
   },
 ];
 
 export const myTasksSeed = [
   {
-    id: "t1",
-    title: "Fix OTP resend timer on onboarding",
-    project: "Client Portal Revamp",
+    id: 1,
+    title: "Review homepage wireframes",
+    project: "Website redesign",
+    priority: "High",
     due: "Today",
-    priority: "High",
     done: false,
   },
   {
-    id: "t2",
-    title: "Review GSTIN validation regex",
-    project: "Client Portal Revamp",
-    due: "Tomorrow",
+    id: 2,
+    title: "Fix login token refresh",
+    project: "Mobile app v2",
+    priority: "High",
+    due: "Today",
+    done: false,
+  },
+  {
+    id: 3,
+    title: "Write migration test plan",
+    project: "Payments migration",
     priority: "Medium",
+    due: "Tomorrow",
     done: false,
   },
   {
-    id: "t3",
-    title: "Write test cases for shift swap",
-    project: "Mobile Attendance App",
-    due: "Sep 12",
+    id: 4,
+    title: "Update onboarding copy",
+    project: "Customer portal",
     priority: "Low",
-    done: false,
+    due: "Fri",
+    done: true,
   },
   {
-    id: "t4",
-    title: "Sync payroll export with Tally",
-    project: "Payroll Automation",
-    due: "Sep 9",
-    priority: "High",
-    done: true,
+    id: 5,
+    title: "Audit accessibility contrast",
+    project: "Website redesign",
+    priority: "Medium",
+    due: "Mon",
+    done: false,
   },
 ];
 
 export const teamSeed = [
   {
-    id: "u1",
+    id: 1,
+    name: "Aditi Rao",
+    initials: "AR",
+    role: "Product Engineering lead",
+    status: "On track",
+    load: 62,
+  },
+  {
+    id: 2,
     name: "Sahil Khanna",
     initials: "SK",
-    role: "Frontend Engineer",
-    load: 5,
-    status: "Active",
+    role: "Frontend engineer",
+    status: "At risk",
+    load: 88,
   },
   {
-    id: "u2",
-    name: "Manav Joshi",
-    initials: "MJ",
-    role: "Backend Engineer",
-    load: 3,
-    status: "Active",
-  },
-  {
-    id: "u3",
+    id: 3,
     name: "Priya Verma",
     initials: "PV",
-    role: "QA Engineer",
-    load: 7,
+    role: "QA engineer",
     status: "Overloaded",
+    load: 112,
+  },
+  {
+    id: 4,
+    name: "Neha Gupta",
+    initials: "NG",
+    role: "Backend engineer",
+    status: "On track",
+    load: 55,
   },
 ];
 
 export const activitySeed = [
   {
-    id: "a1",
-    text: 'Priya moved "Shift swap API" to In Review',
-    time: "12m ago",
+    id: 1,
+    text: "Sahil completed “Fix cart rounding bug”",
+    time: "12 min ago",
   },
+  { id: 2, text: "Aditi created project Customer portal", time: "1 hour ago" },
+  { id: 3, text: "Priya was assigned 4 new tasks", time: "3 hours ago" },
+  { id: 4, text: "Payments migration moved to 51%", time: "Yesterday" },
+];
+
+export const notificationsSeed = [
   {
-    id: "a2",
-    text: "Manav closed 3 tasks in Payroll Automation",
-    time: "1h ago",
+    id: 1,
+    text: "Mobile app v2 is now at risk",
+    time: "5 min ago",
+    unread: true,
   },
+  { id: 2, text: "2 tasks are due today", time: "1 hour ago", unread: true },
   {
-    id: "a3",
-    text: "New member Sahil Khanna joined Product Engineering",
+    id: 3,
+    text: "Priya's workload is above 100%",
     time: "Yesterday",
+    unread: false,
   },
 ];
 
-export function initials(name) {
-  return name
-    .split(" ")
-    .map((n) => n[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
-}
+export const weeklySeed = [
+  { d: "Mon", v: 8 },
+  { d: "Tue", v: 12 },
+  { d: "Wed", v: 9 },
+  { d: "Thu", v: 15 },
+  { d: "Fri", v: 11 },
+  { d: "Sat", v: 3 },
+  { d: "Sun", v: 2 },
+];
+
+export const peopleSeed = [
+  {
+    name: "Aditi Rao",
+    role: "Manager",
+    team: "Product Engineering",
+    status: "Active",
+  },
+  {
+    name: "Sahil Khanna",
+    role: "Employee",
+    team: "Product Engineering",
+    status: "At risk",
+  },
+  { name: "Priya Verma", role: "Employee", team: "QA", status: "Overloaded" },
+  {
+    name: "Neha Gupta",
+    role: "Employee",
+    team: "Platform",
+    status: "On track",
+  },
+];

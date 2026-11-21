@@ -1,18 +1,22 @@
+import { card } from "./ui";
+
 export default function ActivityFeed({ items }) {
   return (
-    <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-6">
-      <h3 className="font-bold text-slate-900 mb-4">Recent activity</h3>
-      <div className="space-y-4">
+    <div className={`${card} p-6`}>
+      <h3 className="font-bold text-slate-900 dark:text-white mb-4">
+        Recent activity
+      </h3>
+      <ol className="relative space-y-5 border-l border-slate-200 dark:border-slate-800 ml-1">
         {items.map((a) => (
-          <div key={a.id} className="flex gap-3">
-            <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 shrink-0" />
-            <div>
-              <p className="text-sm text-slate-700">{a.text}</p>
-              <p className="text-xs text-slate-400 mt-0.5">{a.time}</p>
-            </div>
-          </div>
+          <li key={a.id} className="pl-5 relative">
+            <span className="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-indigo-500 ring-4 ring-white dark:ring-slate-900" />
+            <p className="text-sm text-slate-700 dark:text-slate-200">
+              {a.text}
+            </p>
+            <p className="text-xs text-slate-400 mt-0.5">{a.time}</p>
+          </li>
         ))}
-      </div>
+      </ol>
     </div>
   );
 }

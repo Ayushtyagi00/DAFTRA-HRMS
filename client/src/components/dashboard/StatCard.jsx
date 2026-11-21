@@ -1,17 +1,24 @@
-export default function StatCard({ label, value, sub, accent }) {
+import { card, Spark } from "./ui";
+
+export default function StatCard({ label, value, sub, accent, trend }) {
   return (
-    <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-6">
-      <p className="text-sm font-medium text-slate-500 mb-2">{label}</p>
-      <div className="flex items-end justify-between">
-        <span className="text-3xl font-bold text-slate-900 tracking-tight">
-          {value}
-        </span>
-        {sub && (
-          <span
-            className={`text-xs font-semibold ${accent || "text-emerald-600"}`}
-          >
-            {sub}
+    <div className={`${card} min-h-[148px] p-5 sm:p-6`}>
+      <p className="text-xs font-bold uppercase tracking-[0.08em] text-slate-500 mb-3">
+        {label}
+      </p>
+      <div className="flex items-end justify-between gap-3">
+        <div>
+          <span className="block min-h-10 text-3xl font-extrabold text-slate-950 tracking-tight tabular-nums">
+            {value}
           </span>
+          {sub && (
+            <p className={`text-xs font-semibold mt-2 ${accent || "text-emerald-600"}`}>
+              {sub}
+            </p>
+          )}
+        </div>
+        {trend && (
+          <Spark data={trend} className={accent || "text-emerald-600"} />
         )}
       </div>
     </div>
