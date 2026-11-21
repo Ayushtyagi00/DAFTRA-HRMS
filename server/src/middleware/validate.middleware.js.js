@@ -16,6 +16,13 @@ const newUserRegsiterSchema = z.object({
     .min(6, { message: "Password must be at least 6 characters long" }),
 });
 
+const workspaceSchema = z.object({
+  workspaceName: z.string().min(1, { message: "Workspace name is required" }),
+  industryType: z.string().min(1, { message: "Industry is required" }),
+  teamSize: z.string().min(1, { message: "Team size must be at least 1" }),
+  created_by: z.string().min(1, { message: "Created by is required" }),
+});
+
 const validateLoginMiddleware = (req, res, next) => {
   const result = loginSchema.safeParse(req.body);
 
@@ -42,7 +49,20 @@ const validateRegisterMiddleware = (req, res, next) => {
   next();
 };
 
+const createWorkspaceValidetion = (req, res, next) => {
+  const result = workspaceSchema.safeParse(req.body);
+  if (!result.success) {
+    return res.status(400).json({
+      success: false,
+      errors: result.error.issues,
+    });
+  }
+
+  next();
+};
+
 module.exports = {
   validateLoginMiddleware,
   validateRegisterMiddleware,
+  createWorkspaceValidetion,
 };

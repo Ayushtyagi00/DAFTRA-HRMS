@@ -13,7 +13,6 @@ export default function LoginPage() {
     companyId: "",
     email: "",
     password: "",
-    role: "superadmin",
   });
 
   const [registerData, setRegisterData] = useState({
@@ -45,10 +44,21 @@ export default function LoginPage() {
     setLoading(true);
     setError("");
     try {
-      const response = await authAPI.login(formData.email, formData.password);
+      const response = await authAPI.login(
+        formData.email,
+        formData.password,
+      );
 
       if (response.success) {
-        navigate("/dashboard");
+        localStorage.setItem("token", response.token);
+        localStorage.setItem("role", response.user?.role || "employee");
+        const userId = response.user?.id || response.user?.userId;
+        if (!userId) {
+          setError("Login response did not include a user ID.");
+          return;
+        }
+        localStorage.setItem("userId", String(userId));
+        navigate(`/dashboard/${userId}`, { replace: true });
       }
     } catch (err) {
       setError(err.message || "Login failed");
@@ -79,7 +89,15 @@ export default function LoginPage() {
 
       // Continue to workspace membership after account creation.
       if (response.success) {
-        navigate("/workspace");
+        localStorage.setItem("token", response.token);
+        localStorage.setItem("role", "hradmin");
+        const userId = response.user?.id || response.user?.userId;
+        if (!userId) {
+          setError("Registration response did not include a user ID.");
+          return;
+        }
+        localStorage.setItem("userId", String(userId));
+        navigate("/workspace", { replace: true });
       }
     } catch (err) {
       setError(err.message || "Registration failed");

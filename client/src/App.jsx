@@ -1,27 +1,25 @@
-import { Routes, Route } from "react-router-dom";
-import LoginPage from "./pages/auth/loginPage";
-import OnboardingPage from "./pages/onboarding/OnboardingPage";
-import DashboardPage from "./pages/dashboard/DashboardPage";
-import HomePage from "./pages/home/HomePage";
-import InvitationPage from "./pages/onboarding/InvitationPage";
-import WorkspacePage from "./pages/onboarding/WorkspacePage";
-import CreateWorkspacePage from "./pages/onboarding/CreateWorkspacePage";
-import JoinWorkspacePage from "./pages/onboarding/JoinWorkspacePage";
+import { useLocation } from "react-router-dom";
+import PrivateRouter from "./router/privateRouter";
+import PublicRouter, { isAuthenticated } from "./router/publicRouter";
 
 function App()  {
-  return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/register" element={<LoginPage />} />
-      <Route path="/onboarding" element={<OnboardingPage />} />
-      <Route path="/invitation" element={<InvitationPage />} />
-      <Route path="/workspace" element={<WorkspacePage />} />
-      <Route path="/workspace/create" element={<CreateWorkspacePage />} />
-      <Route path="/workspace/join" element={<JoinWorkspacePage />} />
-      <Route path="/dashboard" element={<DashboardPage />} />
-    </Routes>
+  const { pathname } = useLocation();
+  const privatePaths = ["/dashboard", "/onboarding", "/workspace"];
+  const isPrivatePath = privatePaths.some(
+    (path) => pathname === path || pathname.startsWith(`${path}/`),
   );
+
+  if (isPrivatePath) {
+    return <PrivateRouter />;
+  }
+
+  if (isAuthenticated() && (pathname === "/login" || pathname === "/register")) {
+    return (
+      <PublicRouter />
+    );
+  }
+
+  return <PublicRouter />;
 }
 
 export default App;

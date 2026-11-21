@@ -12,6 +12,7 @@ export default function HrTopBar({
   onMenu,
   onSearch,
   onQuickAdd,
+  onLogout,
 }) {
   const [bell, setBell] = useState(false);
   const [menu, setMenu] = useState(false);
@@ -171,6 +172,13 @@ export default function HrTopBar({
                   )}
                 </button>
               ))}
+              <button
+                onClick={onLogout}
+                className={`w-full flex items-center gap-2 px-3 py-2 mt-1 rounded-xl text-sm font-semibold text-rose-600 hover:bg-rose-50 ${focusRing}`}
+              >
+                <Icon d={HR_ICONS.collapse} className="h-4 w-4" />
+                Sign out
+              </button>
             </div>
           )}
         </div>

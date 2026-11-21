@@ -15,7 +15,11 @@ import {
 } from "../../constant/employeesData";
 
 export default function HrmsApp() {
-  const [role, setRole] = useState("hradmin");
+  const storedRole = localStorage.getItem("role");
+  const allowedRoles = ["superadmin", "hradmin", "manager", "employee"];
+  const [role, setRole] = useState(
+    allowedRoles.includes(storedRole) ? storedRole : "hradmin",
+  );
   const [active, setActive] = useState("home");
   const [collapsed, setCollapsed] = useState(false);
   const [mobile, setMobile] = useState(false);
@@ -63,6 +67,7 @@ export default function HrmsApp() {
   const changeRole = useCallback(
     (r) => {
       setRole(r);
+      localStorage.setItem("role", r);
       setActive("home");
       toast(`Viewing as ${ROLES[r].label}`);
     },
@@ -148,6 +153,12 @@ export default function HrmsApp() {
           }
           onMenu={() => setMobile(true)}
           onSearch={() => setPalette(true)}
+          onLogout={() => {
+            localStorage.removeItem("token");
+            localStorage.removeItem("role");
+            localStorage.removeItem("userId");
+            window.location.assign("/login");
+          }}
           onQuickAdd={() => {
             if (role === "superadmin" || role === "hradmin") {
               setActive("employees");

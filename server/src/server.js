@@ -12,6 +12,7 @@ dotenv.config({
 });
 
 const authRouter = require("./routers/auth.routes");
+const workspaceRouter = require("./routers/workspace.routes");
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -52,6 +53,7 @@ app.use(
 );
 
 app.use("/auth", authRouter);
+app.use("/workspace", workspaceRouter);
 app.listen(PORT, () => {
   console.log(`Server is running in ${NODE_ENV} mode`);
   console.log(`Server is running on port ${PORT}`);
